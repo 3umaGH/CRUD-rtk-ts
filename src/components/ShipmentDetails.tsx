@@ -39,10 +39,7 @@ export const ShipmentDetails = () => {
   const [inputValues, setInputValues] = useState({});
 
   useEffect(() => {
-    if (currentShipment) {
-      setInputValues(currentShipment);
-      console.log(inputValues);
-    }
+    if (currentShipment) setInputValues(currentShipment);
   }, [currentShipment]);
 
   const handleDelete = () => {
@@ -55,8 +52,6 @@ export const ShipmentDetails = () => {
       ...inputValues,
       [target.name]: target.value,
     });
-
-    console.log(inputValues);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
