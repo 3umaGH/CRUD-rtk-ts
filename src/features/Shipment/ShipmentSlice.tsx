@@ -23,7 +23,9 @@ export const ShipmentSlice = createSlice({
   initialState,
   reducers: {
     updateShipment: (state, action) => {},
-    deleteShipment: (state, action) => {},
+    deleteShipment: (state, action) => {
+      state.shipments = state.shipments.filter((shipment) => shipment.orderNo !== action.payload);
+    },
   },
 
   extraReducers: (builder) => {
