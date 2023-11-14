@@ -19,3 +19,7 @@ export const ShipmentTableColumns: GridColDef[] = [
     ),
   },
 ];
+
+export const getHeaderNameByField = (field: string) => {
+    return ShipmentTableColumns.find((col) => col.field === field)?.headerName || "";
+}
