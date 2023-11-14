@@ -6,6 +6,7 @@ import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/Store";
 import { deleteShipment } from "../../features/Shipment/ShipmentSlice";
+import { openShipmentDetails } from "../../features/ShipmentDetails/ShipmentDetailsSlice";
 
 type ActionsProps = {
   orderNo: string;
@@ -19,7 +20,7 @@ export const ActionsComponent = ({ orderNo }: ActionsProps) => {
     }
 
     const handleViewDetails = () => {
-
+        dispatch(openShipmentDetails(orderNo))
     }
 
   return (
