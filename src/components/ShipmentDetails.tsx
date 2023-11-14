@@ -1,10 +1,14 @@
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../app/Store";
 import { Modal, Box, Button, Typography, TextField } from "@mui/material/";
 import { closeShipmentDetails } from "../features/ShipmentDetails/ShipmentDetailsSlice";
 import { getHeaderNameByField } from "./ShipmentTable/columns";
-import { deleteShipment } from "../features/Shipment/ShipmentSlice";
+import {
+  deleteShipment,
+  updateShipment,
+} from "../features/Shipment/ShipmentSlice";
+import { ShipmentProps } from "../constants";
 
 const style = {
   position: "absolute",
@@ -33,8 +37,35 @@ export const ShipmentDetails = () => {
     (shipment) => shipment.orderNo === shipmentDetails.currentOrder
   );
 
+  const [inputValues, setInputValues] = useState({});
+
+  useEffect(() => {
+    if (currentShipment) {
+        setInputValues(currentShipment)
+        console.log(inputValues);
+    }
+
+    
+  }, [currentShipment]);
+
   const handleDelete = () => {
     dispatch(deleteShipment(shipmentDetails.currentOrder));
+    dispatch(closeShipmentDetails());
+  };
+
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValues({
+      ...inputValues,
+      [target.name]: target.value,
+    });
+
+    console.log(inputValues)
+  };
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    dispatch(updateShipment({prevProps: currentShipment, newProps: inputValues}));
     dispatch(closeShipmentDetails());
   };
 
@@ -51,9 +82,10 @@ export const ShipmentDetails = () => {
               {Object.keys(currentShipment).map((key) => (
                 <TextField
                   key={key}
+                  name={key}
                   label={getHeaderNameByField(key) || key}
                   defaultValue={currentShipment[key]}
-                  //onChange={handleChange}
+                  onChange={handleChange}
                   required
                   sx={{ mt: 3, width: 1 }}
                 />
@@ -69,6 +101,7 @@ export const ShipmentDetails = () => {
                 color="primary"
                 size="small"
                 type="submit"
+                onClick={(e) => handleSubmit(e)}
               >
                 Save
               </Button>
