@@ -41,11 +41,9 @@ export const ShipmentDetails = () => {
 
   useEffect(() => {
     if (currentShipment) {
-        setInputValues(currentShipment)
-        console.log(inputValues);
+      setInputValues(currentShipment);
+      console.log(inputValues);
     }
-
-    
   }, [currentShipment]);
 
   const handleDelete = () => {
@@ -59,13 +57,15 @@ export const ShipmentDetails = () => {
       [target.name]: target.value,
     });
 
-    console.log(inputValues)
+    console.log(inputValues);
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(updateShipment({prevProps: currentShipment, newProps: inputValues}));
+    dispatch(
+      updateShipment({ prevProps: currentShipment, newProps: inputValues })
+    );
     dispatch(closeShipmentDetails());
   };
 
@@ -74,7 +74,7 @@ export const ShipmentDetails = () => {
       {shipmentDetails.isOpen && currentShipment && (
         <Modal open={true} onClose={() => dispatch(closeShipmentDetails())}>
           <Box sx={style}>
-            <form>
+            <form onSubmit={(e) => handleSubmit(e)}>
               <Typography id="modal-title" variant="h6" component="h2">
                 Shipment Details
               </Typography>
@@ -101,7 +101,6 @@ export const ShipmentDetails = () => {
                 color="primary"
                 size="small"
                 type="submit"
-                onClick={(e) => handleSubmit(e)}
               >
                 Save
               </Button>
