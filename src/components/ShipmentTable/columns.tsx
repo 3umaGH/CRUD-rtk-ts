@@ -1,4 +1,5 @@
 import { GridColDef } from "@mui/x-data-grid";
+import { ActionsComponent } from "./ActionsComponent";
 
 export const ShipmentTableColumns: GridColDef[] = [
   { field: "orderNo", headerName: "Order No", flex: 1 },
@@ -7,4 +8,14 @@ export const ShipmentTableColumns: GridColDef[] = [
   { field: "trackingNo", headerName: "Tracking No", flex: 1 },
   { field: "status", headerName: "Status", flex: 1 },
   { field: "consignee", headerName: "Consignee", flex: 1 },
+  {
+    field: "actions",
+    headerName: "Actions",
+    type: "actions",
+    flex: 0.4,
+    minWidth: 150,
+    renderCell: (params) => (
+      <ActionsComponent orderNo={params.row.orderNo}/>
+    ),
+  },
 ];
