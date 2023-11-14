@@ -14,12 +14,12 @@ export const ShipmentTableColumns: GridColDef[] = [
     type: "actions",
     flex: 0.4,
     minWidth: 150,
-    renderCell: (params) => (
-      <ActionsComponent orderNo={params.row.orderNo}/>
-    ),
+    renderCell: (params) => <ActionsComponent orderNo={params.row.orderNo} />,
   },
 ];
 
 export const getHeaderNameByField = (field: string) => {
-    return ShipmentTableColumns.find((col) => col.field === field)?.headerName || "";
-}
+  return (
+    ShipmentTableColumns.find((col) => col.field === field)?.headerName || ""
+  );
+};

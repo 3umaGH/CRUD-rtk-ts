@@ -13,22 +13,31 @@ type ActionsProps = {
 };
 
 export const ActionsComponent = ({ orderNo }: ActionsProps) => {
-    const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
-    const handleDelete = () => {
-        dispatch(deleteShipment(orderNo));
-    }
+  const handleDelete = () => {
+    dispatch(deleteShipment(orderNo));
+  };
 
-    const handleViewDetails = () => {
-        dispatch(openShipmentDetails(orderNo))
-    }
+  const handleViewDetails = () => {
+    dispatch(openShipmentDetails(orderNo));
+  };
 
   return (
     <Box>
-      <Button variant="text" onClick={handleViewDetails} sx={{ minWidth: "0", mr: 1 }}>
+      <Button
+        variant="text"
+        onClick={handleViewDetails}
+        sx={{ minWidth: "0", mr: 1 }}
+      >
         <SearchIcon />
       </Button>
-      <Button variant="text" onClick={handleDelete} sx={{ minWidth: "0" }} color="error">
+      <Button
+        variant="text"
+        onClick={handleDelete}
+        sx={{ minWidth: "0" }}
+        color="error"
+      >
         <ClearOutlinedIcon />
       </Button>
     </Box>

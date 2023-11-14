@@ -8,7 +8,6 @@ import {
   deleteShipment,
   updateShipment,
 } from "../features/Shipment/ShipmentSlice";
-import { ShipmentProps } from "../constants";
 
 const style = {
   position: "absolute",
