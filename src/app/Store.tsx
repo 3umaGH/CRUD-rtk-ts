@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import shipmentReducer from "../features/Shipment/ShipmentSlice"
+import shipmentDetailsReducer from "../features/ShipmentDetails/ShipmentDetailsSlice"
 
 export const store = configureStore({
   reducer: {
-    shipment:  shipmentReducer
+    shipment:  shipmentReducer,
+    shipmentDetails: shipmentDetailsReducer
   },
 })
 
