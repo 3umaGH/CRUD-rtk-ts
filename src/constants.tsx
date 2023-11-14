@@ -5,6 +5,7 @@ export type ShipmentProps = {
     trackingNo: string;
     status: string;
     consignee: string;
+    [key: string]: string;
 }
 
 export const OFFLINE_DATA = [
