@@ -3,7 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../app/Store";
 import { RootState } from "../app/Store";
 
-import { Container, CircularProgress, Alert, Button } from "@mui/material/";
+import {
+  Container,
+  CircularProgress,
+  Alert,
+  Button,
+  Box,
+} from "@mui/material/";
 import { ShipmentDetails } from "../components/ShipmentDetails";
 import { fetchUsers } from "../features/Shipment/thunks";
 
@@ -13,46 +19,44 @@ export const ShipmentListPage = () => {
 
   return (
     <>
-      <Container
-        maxWidth={false}
-        sx={{
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-        }}
-      >
-        <div style={{ width: "100%" }}>
-          <ShipmentDetails />
+      <Container maxWidth={"xl"}>
+        <ShipmentDetails />
 
-          {shipment.loading ? (
+        {shipment.loading ? (
+          <Box
+            sx={{
+              display: "flex",
+              height: "95vh",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <CircularProgress size={"7.5rem"} />
-          ) : (
-            <>
-              {shipment.error && shipment.usingLocalData && (
-                <Alert
-                  severity="warning"
-                  action={
-                    <Button
-                      sx={{ mx: 1, display: { xs: "none", sm: "block" } }}
-                      size="small"
-                      variant="text"
-                      onClick={() => dispatch(fetchUsers())}
-                    >
-                      Retry
-                    </Button>
-                  }
-                >
-                  Something went wrong with retreiving latest data. Using local
-                  copy.
-                </Alert>
-              )}
+          </Box>
+        ) : (
+          <>
+            {shipment.error && shipment.usingLocalData && (
+              <Alert
+                severity="warning"
+                action={
+                  <Button
+                    sx={{ mx: 1, display: { xs: "none", sm: "block" } }}
+                    size="small"
+                    variant="text"
+                    onClick={() => dispatch(fetchUsers())}
+                  >
+                    Retry
+                  </Button>
+                }
+              >
+                Something went wrong with retreiving latest data. Using local
+                copy.
+              </Alert>
+            )}
 
-              <ShipmentTable rows={shipment.shipments} />
-            </>
-          )}
-        </div>
+            <ShipmentTable rows={shipment.shipments} />
+          </>
+        )}
       </Container>
     </>
   );
