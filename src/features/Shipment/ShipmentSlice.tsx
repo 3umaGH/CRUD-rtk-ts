@@ -27,7 +27,7 @@ export const ShipmentSlice = createSlice({
         (shipment) => shipment.orderNo === prevProps.orderNo
       );
 
-      if (targetShipmentIndex !== 1)
+      if (targetShipmentIndex !== -1)
         state.shipments[targetShipmentIndex] = {
           ...newProps,
         };
