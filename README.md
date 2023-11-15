@@ -1,28 +1,25 @@
-# React + TypeScript + Vite
+# CRUD App with React, MUI, TypeScript, Redux, and Thunk
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This is a simple CRUD (Read, Update, Delete) application built using React, Material-UI (MUI), TypeScript, Redux, and Thunk. The app fetches data from an API and gracefully falls back to local data in case of a failure. It also supports entry deletion and updating.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
 
-## Expanding the ESLint configuration
+- **React**: JavaScript library for building user interfaces.
+- **Material-UI (MUI)**: React UI framework implementing Google's Material Design.
+- **TypeScript**: Superset of JavaScript adding static types to the language.
+- **Redux**: State management library for JavaScript applications.
+- **Thunk**: Middleware for Redux allowing asynchronous logic in action creators.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Preview
 
-- Configure the top-level `parserOptions` property like this:
+You can preview the app [here](https://crud-rtk-ts.vercel.app).
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Features
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# CRUD-rtk-ts
+1. **Data Fetching**: Fetches data from an external API, falls back to local data on failure.
+
+3. **Deletion**: Users can delete entries from the app.
+
+4. **Updating**: Allows users to update existing entries.
