@@ -1,12 +1,16 @@
 import { ShipmentTable } from "../components/ShipmentTable/ShipmentTable";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch } from "../app/Store";
 import { RootState } from "../app/Store";
 
-import { Container, CircularProgress, Alert } from "@mui/material/";
+import { Container, CircularProgress, Alert, Button } from "@mui/material/";
 import { ShipmentDetails } from "../components/ShipmentDetails";
+import { fetchUsers } from "../features/Shipment/thunks";
 
 export const ShipmentListPage = () => {
   const shipment = useSelector((state: RootState) => state.shipment);
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
     <>
       <Container
@@ -27,7 +31,19 @@ export const ShipmentListPage = () => {
           ) : (
             <>
               {shipment.error && shipment.usingLocalData && (
-                <Alert severity="warning">
+                <Alert
+                  severity="warning"
+                  action={
+                    <Button
+                      sx={{ mx: 1, display: { xs: "none", sm: "block" } }}
+                      size="small"
+                      variant="text"
+                      onClick={() => dispatch(fetchUsers())}
+                    >
+                      Retry
+                    </Button>
+                  }
+                >
                   Something went wrong with retreiving latest data. Using local
                   copy.
                 </Alert>
